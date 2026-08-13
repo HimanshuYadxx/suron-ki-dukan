@@ -526,6 +526,27 @@ const SeekBar = ({ currentTime, duration, onSeek }: SeekBarProps) => {
         </div>
       </header>
 
+       {/* Top Centre: Logo Badge with Image & Live Count */}
+<div className="pointer-events-auto flex flex-col items-center gap-1">
+  <div className="glass-panel px-4 py-2 rounded-full shadow-lg backdrop-blur-md border border-white/20 flex items-center justify-center">
+    <img 
+      src="/logo.png" 
+      alt="सुरों की दुकान" 
+      className="h-8 sm:h-11 w-auto object-contain drop-shadow-[0_2px_12px_rgba(245,158,11,0.6)]" 
+      onError={(e) => {
+        // अगर logo.png ना मिले तो ऑटोमैटिक सुनहरे टेक्स्ट में बदल जाएगा
+        e.currentTarget.style.display = 'none';
+        const fallback = e.currentTarget.nextElementSibling;
+        if (fallback) fallback.classList.remove('hidden');
+      }}
+    />
+    <span className="hidden text-lg sm:text-xl font-bold bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 bg-clip-text text-transparent tracking-wide">
+      सुरों की दुकान
+    </span>
+  </div>
+  <LiveListeners count={listenersCount} />
+</div>
+
       {/* Visible YouTube Player Modal */}
       {showVideoModal && (
         <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
